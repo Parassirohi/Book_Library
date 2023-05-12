@@ -2,18 +2,25 @@
 
 {% block content %}
   <h1>Books</h1>
-  <ul>
-    {% for book in books %}
-      <li>
-
-          {{ book.title }}
-        by {{ book.author }}
-      </li>
-    {% empty %}
-      <li>No books found.</li>
-    {% endfor %}
-  </ul>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Available Copies</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.publisher }}</td>
+          <td>{{ book.number_of_available_copies }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
 {% endblock %}
-
-
-
