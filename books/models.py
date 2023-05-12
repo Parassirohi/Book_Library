@@ -10,5 +10,5 @@ class Book(models.Model):
     number_of_available_copies = models.IntegerField()
 
     def __str__(self):
-        return self.title, self.author
+        return self.title
 

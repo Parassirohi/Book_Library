@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ book.title }}</h1>
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+  <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+  <p><strong>Number of Copies:</strong> {{ book.number_of_copies }}</p>
+  <p><strong>Number of Available Copies:</strong> {{ book.number_of_available_copies }}</p>
+  <p><a href="{% url 'purchase_book' book.pk %}">Purchase</a></p>
+{% endblock %}

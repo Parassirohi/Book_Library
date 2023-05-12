@@ -6,7 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from .models import Book
-from .serializer import BookSerializer
+from .serializer import BookSerializer, BookFrontendSerializer
 from .pagination import DefaultPagination
 
 
@@ -33,8 +33,22 @@ class BookViewSet(ModelViewSet):
             book.save()
             serializer = self.get_serializer(book)
             return Response(serializer.data)
-        return Response({'detail': f'Only {book.num_of_available_copies} copies of this book are available'},
+        return Response({'detail': f'Only {book.number_of_available_copies} copies of this book are available'},
                         status=status.HTTP_400_BAD_REQUEST)
 
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return BookFrontendSerializer
+        return BookSerializer
 
 
+def home(request):
+    books = BookViewSet.as_view({'get': 'list'})(request).data
+    context = {'books': books}
+    return render(request, 'home.html', context)
+
+
+def book_detail(request, book_id):
+    book = BookViewSet.as_view({'get': 'retrieve'})(request, pk=book_id).data
+    context = {'book': book}
+    return render(request, 'book_detail.html', context)

@@ -8,3 +8,10 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ["id", "title", "author", "publisher",
                   "publication_year", "number_of_copies", "number_of_available_copies"]
+
+
+class BookFrontendSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'author', 'publisher', 'publication_year', 'number_of_copies',
+                  'number_of_available_copies']
