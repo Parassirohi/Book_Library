@@ -13,7 +13,7 @@ from .pagination import DefaultPagination
 class BookViewSet(ModelViewSet):
     # queryset = Books.objects.all()
     serializer_class = BookSerializer
-    pagination_class = DefaultPagination
+    #pagination_class = DefaultPagination
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title', 'author', 'publisher']
     ordering_fields = ['title', 'author', 'publication_year']
